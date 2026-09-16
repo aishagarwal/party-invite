@@ -1,0 +1,1006 @@
+<title>Bride Tribe's Day Out</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,400;1,600;1,700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF6EC;
+    --paper:#FFFDF8;
+    --ink:#2C231D;
+    --ink-soft:rgba(44,35,29,.65);
+    --berry:#A5334B;
+    --berry-deep:#7C2438;
+    --sage:#6E8F6B;
+    --sage-deep:#4F6B4C;
+    --gold:#C79A2E;
+    --line:rgba(44,35,29,.16);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#221A1C;
+      --paper:#2E2226;
+      --ink:#F5ECE1;
+      --ink-soft:rgba(245,236,225,.68);
+      --berry:#E38DA0;
+      --berry-deep:#F0AEBD;
+      --sage:#9FC49B;
+      --sage-deep:#BEDEBA;
+      --gold:#E8C567;
+      --line:rgba(245,236,225,.18);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#221A1C;
+    --paper:#2E2226;
+    --ink:#F5ECE1;
+    --ink-soft:rgba(245,236,225,.68);
+    --berry:#E38DA0;
+    --berry-deep:#F0AEBD;
+    --sage:#9FC49B;
+    --sage-deep:#BEDEBA;
+    --gold:#E8C567;
+    --line:rgba(245,236,225,.18);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background-color:var(--bg);
+    background-image:url('bg.jpeg');
+    background-repeat:repeat;
+    background-size:300px auto;
+    color:var(--ink);
+    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif;
+    min-height:100%;
+  }
+  .page{
+    max-width:480px;
+    margin:0 auto;
+    padding-inline:20px;
+    padding-block:32px 56px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+
+  .masthead{ text-align:center; }
+  .page > .masthead{
+    background:var(--paper);
+    border:1.5px solid var(--line);
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 6px 18px rgba(44,35,29,.08);
+  }
+  .eyebrow{
+    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif;
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--berry-deep);
+  }
+  .headline{
+    font-family:'Fraunces',Georgia,serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:clamp(30px,8vw,42px);
+    line-height:1.05;
+    margin:6px 0 4px;
+    text-wrap:balance;
+  }
+  .subline{
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .subline b{ color:var(--ink); font-weight:700; }
+
+  .ticket{
+    position:relative;
+    background:var(--paper);
+    border:1.5px solid var(--line);
+    border-radius:18px;
+    padding:22px 20px;
+    box-shadow:0 6px 18px rgba(44,35,29,.08);
+  }
+  .ticket:nth-of-type(odd){ transform:rotate(-.6deg); }
+  .ticket:nth-of-type(even){ transform:rotate(.5deg); }
+
+  .ticket-kicker{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .ticket-kicker .tag{
+    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--sage-deep);
+    background:color-mix(in srgb, var(--sage) 16%, transparent);
+    padding:4px 8px;
+    border-radius:999px;
+  }
+  .ticket-kicker .num{
+    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif;
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+  .ticket h2{
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:700;
+    font-size:22px;
+    margin:0 0 6px;
+  }
+  .ticket p{ margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.5; }
+
+  .seam{
+    position:relative;
+    height:1px;
+    margin:18px -20px;
+    border-top:2px dashed var(--line);
+  }
+  .seam::before,.seam::after{
+    content:"";
+    position:absolute;
+    top:50%; transform:translateY(-50%);
+    width:20px; height:20px;
+    background:var(--bg);
+    border-radius:50%;
+  }
+  .seam::before{ left:-10px; }
+  .seam::after{ right:-10px; }
+
+  .btn{
+    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif;
+    font-size:13px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:#FBF6EC;
+    background:var(--berry);
+    border:none;
+    border-radius:999px;
+    padding:12px 20px;
+    cursor:pointer;
+    width:100%;
+    transition:transform .15s ease, opacity .15s ease;
+  }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:active{ transform:translateY(0); }
+  .btn:disabled{ opacity:.55; cursor:default; transform:none; }
+  .btn-continue{
+    background:var(--sage-deep);
+    margin-top:16px;
+  }
+  .btn-ghost{
+    background:transparent;
+    border:1.5px solid var(--line);
+    color:var(--ink);
+  }
+
+  [hidden]{ display:none !important; }
+  .fade-in{ animation:fadeIn .5s ease both; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---- Scratch card ---- */
+  .scratch-wrap{
+    position:relative;
+    height:190px;
+    border-radius:12px;
+    overflow:hidden;
+    border:1.5px solid var(--line);
+    touch-action:none;
+  }
+  .scratch-reveal{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:16px;
+    background:linear-gradient(180deg, color-mix(in srgb, var(--sage) 18%, var(--paper)), var(--paper));
+  }
+  .scratch-reveal .big{
+    font-family:'Fraunces',Georgia,serif;
+    font-style:italic;
+    font-weight:700;
+    font-size:22px;
+    margin-bottom:6px;
+  }
+  .scratch-reveal .small{ font-size:13px; color:var(--ink-soft); }
+  .scratch-canvas{ position:absolute; inset:0; width:100%; height:100%; cursor:grab; }
+  .scratch-hint{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif;
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:#FBF6EC; pointer-events:none; text-align:center;
+  }
+
+  /* ---- Wheel ---- */
+  .wheel-area{ display:flex; flex-direction:column; align-items:center; gap:14px; margin:6px 0 4px; }
+  .wheel-frame{ position:relative; width:230px; height:230px; }
+  .wheel{
+    width:100%; height:100%;
+    border-radius:50%;
+    border:4px solid var(--paper);
+    outline:2px solid var(--line);
+    position:relative;
+    transition:transform 3.6s cubic-bezier(.17,.89,.24,1);
+  }
+  .wheel span{
+    position:absolute;
+    left:50%; top:50%;
+    font-size:26px;
+    line-height:1;
+    filter:drop-shadow(0 1px 2px rgba(0,0,0,.3));
+    transform-origin:0 0;
+  }
+  .wheel-pointer{
+    position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+    font-size:22px; color:var(--berry-deep); z-index:2;
+  }
+  .wheel-hub{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:34px; height:34px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--line);
+    z-index:1;
+  }
+  .result-box{
+    text-align:center;
+    font-size:14.5px;
+  }
+  .result-box .label{
+    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif;
+    font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft);
+    display:block; margin-bottom:2px;
+  }
+  .result-box .value{
+    font-family:'Fraunces',Georgia,serif; font-weight:700; font-size:19px;
+  }
+  .result-box .small{ font-size:12px; color:var(--ink-soft); margin-top:4px; }
+
+  /* ---- Dress code puzzles ---- */
+  .dress-sub{ margin-top:10px; }
+  .sub-intro{ margin-bottom:12px; }
+  .hint-caption{ text-align:center; font-size:13px; color:var(--ink-soft); margin-top:12px; line-height:1.5; }
+
+  .jigsaw-frame{
+    position:relative; width:100%; max-width:260px; margin:0 auto;
+    aspect-ratio:2773/4160; border-radius:10px; overflow:hidden;
+    border:1.5px solid var(--line);
+  }
+  .jigsaw-grid{
+    position:absolute; inset:0; display:grid;
+    grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(4,1fr);
+    gap:2px; background:var(--ink);
+  }
+  .jigsaw-piece{
+    background-image:url('image.jpeg'); background-size:300% 400%; background-repeat:no-repeat;
+    cursor:pointer; outline:2px solid transparent; outline-offset:-2px;
+    transition:outline-color .15s ease;
+  }
+  .jigsaw-piece.selected{ outline-color:var(--gold); z-index:2; }
+  .jigsaw-grid.solved{ gap:0; box-shadow:inset 0 0 0 3px var(--gold); }
+  .jigsaw-grid.solved .jigsaw-piece{ cursor:default; }
+
+  .crossword-grid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:3px;
+    max-width:230px; margin:0 auto; background:var(--ink); padding:3px; border-radius:8px;
+  }
+  .cw-cell{ position:relative; aspect-ratio:1; background:var(--paper); }
+  .cw-cell.blocked{ background:var(--ink); }
+  .cw-cell input{
+    width:100%; height:100%; border:none; background:transparent;
+    text-align:center; text-transform:uppercase;
+    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif;
+    font-weight:700; font-size:16px; color:var(--ink); outline:none; padding:0;
+  }
+  .cw-cell input.correct{ background:color-mix(in srgb, var(--sage) 40%, transparent); }
+  .cw-cell input.wrong{ animation:cwShake .3s ease; }
+  .cw-num{ position:absolute; top:1px; left:2px; font-size:8px; color:var(--ink-soft); font-weight:700; }
+  @keyframes cwShake{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-3px);} 75%{transform:translateX(3px);} }
+  .clue-list{ margin-top:14px; font-size:13px; color:var(--ink-soft); line-height:1.7; }
+  .clue-list b{ color:var(--ink); }
+
+  .wordle-grid{ display:flex; flex-direction:column; gap:5px; align-items:center; margin:6px auto; }
+  .wordle-row{ display:flex; gap:5px; }
+  .wordle-tile{
+    width:42px; height:42px; border:2px solid var(--line); border-radius:6px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif;
+    font-weight:700; font-size:19px; text-transform:uppercase;
+    background:var(--paper); color:var(--ink);
+  }
+  .wordle-tile.correct{ background:var(--sage-deep); border-color:var(--sage-deep); color:#FBF6EC; }
+  .wordle-tile.present{ background:var(--gold); border-color:var(--gold); color:var(--ink); }
+  .wordle-tile.absent{ background:color-mix(in srgb, var(--ink) 12%, var(--paper)); border-color:var(--line); color:var(--ink-soft); }
+  .wordle-keyboard{ display:flex; flex-direction:column; gap:6px; margin-top:14px; }
+  .wordle-krow{ display:flex; gap:4px; justify-content:center; }
+  .wordle-key{
+    min-width:0; flex:1; max-width:32px; padding:9px 0; border-radius:5px; border:none;
+    background:var(--line); color:var(--ink);
+    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif;
+    font-weight:600; font-size:11px; text-transform:uppercase; cursor:pointer;
+  }
+  .wordle-key.wide{ max-width:50px; flex:1.6; font-size:9px; }
+  .wordle-key.correct{ background:var(--sage-deep); color:#FBF6EC; }
+  .wordle-key.present{ background:var(--gold); color:var(--ink); }
+  .wordle-key.absent{ background:color-mix(in srgb, var(--ink) 20%, var(--paper)); color:var(--ink-soft); }
+  .wordle-msg{ text-align:center; font-size:13px; color:var(--ink-soft); margin-top:10px; min-height:18px; }
+
+  .guess-row{ display:flex; gap:8px; }
+  .guess-row input{
+    flex:1; min-width:0; padding:11px 14px; border-radius:10px;
+    border:1.5px solid var(--line); background:var(--bg); color:var(--ink);
+    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif; font-size:14px; outline:none;
+  }
+  .guess-row input:focus{ border-color:var(--sage-deep); }
+  .guess-row input.correct{ border-color:var(--sage-deep); background:color-mix(in srgb, var(--sage) 25%, var(--paper)); }
+  .guess-row input.wrong{ animation:cwShake .3s ease; border-color:var(--berry); }
+  .guess-row .btn{ width:auto; padding:11px 18px; }
+  .guess-msg{ font-size:13px; color:var(--ink-soft); margin-top:8px; min-height:16px; }
+  .guess-msg.correct{ color:var(--sage-deep); font-weight:700; }
+
+  .golden-ticket{
+    margin-top:16px; border-radius:14px; padding:3px;
+    background:linear-gradient(135deg, #C79A2E, #F3DE9C, #C79A2E);
+    box-shadow:0 8px 20px rgba(199,154,46,.35);
+  }
+  .golden-ticket-inner{
+    background:linear-gradient(160deg, #3B2A0E, #1C1408);
+    border-radius:12px; padding:26px 18px; text-align:center; position:relative; overflow:hidden;
+  }
+  .gt-eyebrow{ font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#E8C567; }
+  .gt-title{ font-family:'Fraunces',Georgia,serif; font-style:italic; font-weight:700; font-size:28px; color:#F7E7B4; margin:8px 0 14px; }
+  .gt-code{
+    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:#F7E7B4; border-top:1px dashed rgba(247,231,180,.4); border-bottom:1px dashed rgba(247,231,180,.4);
+    padding:8px 0;
+  }
+
+  /* ---- Final ---- */
+  .final .headline{ font-size:26px; }
+
+  .confetti{ position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:50; }
+  .confetti i{
+    position:absolute; top:-20px; width:8px; height:14px; opacity:.9;
+    animation:fall linear forwards;
+  }
+  @keyframes fall{
+    to{ transform:translateY(110vh) rotate(360deg); opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .wheel{ transition:none; }
+    .confetti{ display:none; }
+  }
+</style>
+
+<div class="page">
+  <div class="masthead">
+    <div class="headline">Bride Tribe's Day Out</div>
+    <div class="subline">A ticket booklet, of sorts. <b>Play along</b> to unlock the details.</div>
+  </div>
+
+  <!-- STAGE 1: SCRATCH -->
+  <section class="ticket" id="stageScratch">
+    <div class="ticket-kicker"><span class="num">№ 001</span></div>
+    <h2>Scratch the panel below with your finger (or mouse) to find out what.</h2>
+    <div class="seam"></div>
+    <div class="scratch-wrap" id="scratchWrap">
+      <div class="scratch-reveal">
+        <div class="big">Shhh 🤫</div>
+        <div class="small">We're planning something for our favorite bride-to-be. Take a few steps down this trail to find out what.</div>
+      </div>
+      <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
+      <div class="scratch-hint" id="scratchHint">scratch here</div>
+    </div>
+    <button class="btn btn-continue" id="toWheelBtn" hidden>Unlock the next ticket →</button>
+  </section>
+
+  <!-- STAGE 2: WHEEL -->
+  <section class="ticket" id="stageWheel" hidden>
+    <div class="ticket-kicker"><span class="num">№ 002</span></div>
+    <h2>Brunch · 12:00&nbsp;PM 🍹</h2>
+    <p>We've been "considering" venues for your brunch — spoiler, margaritas are involved. Spin the wheel to see where we landed.</p>
+    <div class="seam"></div>
+    <div class="wheel-area">
+      <div class="wheel-frame">
+        <div class="wheel-pointer">▼</div>
+        <div class="wheel" id="wheelEl"></div>
+        <div class="wheel-hub"></div>
+      </div>
+      <button class="btn" id="spinBtn">Spin for the venue</button>
+      <div class="result-box" id="wheelResult" hidden>
+        <span class="label">Brunch venue</span>
+        <span class="value" id="wheelResultValue"></span>
+        <div class="small">🍹 bottomless margaritas included, obviously</div>
+      </div>
+    </div>
+    <button class="btn btn-continue" id="toDressBtn" hidden>Unlock the last ticket →</button>
+  </section>
+
+  <!-- STAGE 3: DRESS CODE -->
+  <section class="ticket" id="stageDress" hidden>
+    <div class="ticket-kicker"><span class="num">№ 003</span></div>
+    <h2>One more thing...</h2>
+    <p>Three little puzzles stand between you and the dress code. No skipping.</p>
+    <div class="seam"></div>
+
+    <div class="dress-sub" id="subJigsaw">
+      <p class="sub-intro">Piece this moment back together. Tap two tiles to swap them.</p>
+      <div class="jigsaw-frame">
+        <div class="jigsaw-grid" id="jigsawGrid"></div>
+      </div>
+      <div class="hint-caption" id="jigsawCaption" hidden>That's the day it all began 💍 — psst, take a look at the Vaatavaran.</div>
+      <button class="btn btn-continue" id="toCrosswordBtn" hidden>Next clue →</button>
+    </div>
+
+    <div class="dress-sub" id="subCrossword" hidden>
+      <p class="sub-intro">Every answer here has something in common.</p>
+      <div class="crossword-grid" id="crosswordGrid"></div>
+      <div class="clue-list">
+        <div><b>Across</b></div>
+        <div>1. Fluffy shape that fills the sky (5)</div>
+        <div style="margin-top:8px;"><b>Down</b></div>
+        <div>2. Flower often carried down the aisle (4)</div>
+        <div>3. Snowy ___ — an all-white bird of prey (3)</div>
+        <div>4. Bird of peace that's always this colour (4)</div>
+      </div>
+      <button class="btn" id="checkCrosswordBtn" style="margin-top:14px;">Check answers</button>
+      <button class="btn btn-continue" id="toWordleBtn" hidden>Final clue →</button>
+    </div>
+
+    <div class="dress-sub" id="subWordle" hidden>
+      <p class="sub-intro">Noticing a theme? Guess the 5-letter word.</p>
+      <div class="wordle-grid" id="wordleGrid"></div>
+      <div class="wordle-msg" id="wordleMsg"></div>
+      <div class="wordle-keyboard" id="wordleKeyboard"></div>
+      <button class="btn btn-continue" id="toGoldenBtn" hidden>One last thing →</button>
+    </div>
+  </section>
+
+  <!-- STAGE 4: GOLDEN TICKET -->
+  <section class="ticket" id="stageGolden" hidden>
+    <div class="ticket-kicker"><span class="num">№ 004</span></div>
+    <h2>One last thing...</h2>
+    <p>Before we let you go — what's the dress code for the rest of the party? Type it below.</p>
+    <div class="seam"></div>
+    <div class="guess-row">
+      <input type="text" id="dressGuessInput" placeholder="Your guess..." autocomplete="off">
+      <button class="btn" id="dressGuessBtn">Guess</button>
+    </div>
+    <div class="guess-msg" id="dressGuessMsg">3 attempts remaining</div>
+
+    <div class="golden-ticket" id="goldenTicket" hidden>
+      <div class="golden-ticket-inner">
+        <div class="gt-eyebrow">Admit One</div>
+        <div class="gt-title">Golden Ticket</div>
+        <div class="gt-code">present this at the party 🎉</div>
+      </div>
+    </div>
+    <div class="hint-caption" id="goldenCaption" hidden>Screenshot this and bring it to the party for a surprise 🤫</div>
+    <button class="btn btn-continue" id="toStageFinalBtn" hidden>Continue →</button>
+  </section>
+
+  <!-- STAGE 5: FINAL -->
+  <section class="ticket final" id="stageFinal" hidden>
+    <div class="masthead" style="margin-bottom:4px;">
+      <div class="headline">You're all set</div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:6px; text-align:center;">
+      <p>Dress code: White 🤍</p>
+      <p>We all can't wait to celebrate with you!</p>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var CONFIG = {
+    events: {
+      brunch: { time: "12:00 PM", venue: "Santo Remedio 🍹" }
+    }
+  };
+
+  function show(el){ el.hidden = false; el.classList.add('fade-in'); el.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'center'}); }
+
+  /* ---------------- STAGE 1: SCRATCH CARD ---------------- */
+  (function scratch(){
+    var wrap = document.getElementById('scratchWrap');
+    var canvas = document.getElementById('scratchCanvas');
+    var hint = document.getElementById('scratchHint');
+    var ctx = canvas.getContext('2d');
+    var toWheelBtn = document.getElementById('toWheelBtn');
+    var revealed = false;
+
+    function size(){
+      var r = wrap.getBoundingClientRect();
+      canvas.width = r.width; canvas.height = r.height;
+      paint();
+    }
+    function paint(){
+      var g = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+      g.addColorStop(0,'#B9C9B6');
+      g.addColorStop(.5,'#DCE6D8');
+      g.addColorStop(1,'#B9C9B6');
+      ctx.fillStyle = g;
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.globalCompositeOperation = 'source-over';
+    }
+    size();
+    window.addEventListener('resize', size);
+
+    function finishReveal(){
+      if (revealed) return;
+      revealed = true;
+      hint.hidden = true;
+      canvas.style.transition = 'opacity .4s ease';
+      canvas.style.opacity = '0';
+      setTimeout(function(){ canvas.remove(); }, 420);
+      show(toWheelBtn);
+    }
+
+    if (reduceMotion) {
+      var skipBtn = document.createElement('div');
+      // reduced motion: just tap once to reveal
+    }
+
+    function erase(x,y){
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x,y,22,0,Math.PI*2);
+      ctx.fill();
+    }
+    function pct(){
+      var data = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+      var cleared = 0, total = data.length/4;
+      for (var i=3;i<data.length;i+=4*20){ if (data[i] < 50) cleared++; }
+      return cleared / (total/20);
+    }
+    var drawing = false;
+    function pos(e){
+      var r = canvas.getBoundingClientRect();
+      var t = (e.touches && e.touches[0]) || e;
+      return { x: t.clientX - r.left, y: t.clientY - r.top };
+    }
+    function start(e){ drawing = true; move(e); }
+    function move(e){
+      if (!drawing || revealed) return;
+      var p = pos(e); erase(p.x,p.y);
+      if (pct() > 0.45) finishReveal();
+      e.preventDefault();
+    }
+    function end(){ drawing = false; }
+
+    canvas.addEventListener('mousedown', start);
+    canvas.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    canvas.addEventListener('touchstart', start, {passive:false});
+    canvas.addEventListener('touchmove', move, {passive:false});
+    canvas.addEventListener('touchend', end);
+    canvas.addEventListener('click', function(){ if (reduceMotion) finishReveal(); });
+
+    toWheelBtn.addEventListener('click', function(){
+      toWheelBtn.hidden = true;
+      show(document.getElementById('stageWheel'));
+    });
+  })();
+
+  /* ---------------- STAGE 2: WHEEL ---------------- */
+  (function wheel(){
+    var segments = ["🥑","🥂","🧇","🎉","☕","🍹"];
+    var targetIndex = segments.length - 1;
+    var revealText = CONFIG.events.brunch.venue;
+    var colors = ['#A5334B','#F3E4C6','#6E8F6B','#F0AEBD','#4F6B4C','#C79A2E'];
+    var wheelEl = document.getElementById('wheelEl');
+    var n = segments.length;
+    var seg = 360 / n;
+
+    var gradientParts = [];
+    for (var i=0;i<n;i++){
+      gradientParts.push(colors[i % colors.length] + ' ' + (i*seg) + 'deg ' + ((i+1)*seg) + 'deg');
+    }
+    wheelEl.style.background = 'conic-gradient(' + gradientParts.join(',') + ')';
+
+    var radius = 78;
+    for (i=0;i<n;i++){
+      var angle = i*seg + seg/2;
+      var span = document.createElement('span');
+      span.textContent = segments[i];
+      span.style.transform = 'rotate(' + angle + 'deg) translate(0, -' + radius + 'px) rotate(-' + angle + 'deg) translate(-50%, -50%)';
+      wheelEl.appendChild(span);
+    }
+
+    var spinBtn = document.getElementById('spinBtn');
+    var resultBox = document.getElementById('wheelResult');
+    var resultValue = document.getElementById('wheelResultValue');
+    var toDressBtn = document.getElementById('toDressBtn');
+
+    spinBtn.addEventListener('click', function(){
+      spinBtn.disabled = true;
+      var targetCenter = targetIndex*seg + seg/2;
+      var spins = 5;
+      var finalRotation = spins*360 + (360 - targetCenter);
+      if (reduceMotion) wheelEl.style.transition = 'none';
+      wheelEl.style.transform = 'rotate(' + finalRotation + 'deg)';
+
+      var delay = reduceMotion ? 50 : 3700;
+      setTimeout(function(){
+        resultValue.textContent = revealText;
+        show(resultBox);
+        show(toDressBtn);
+      }, delay);
+    });
+
+    toDressBtn.addEventListener('click', function(){
+      toDressBtn.hidden = true;
+      show(document.getElementById('stageDress'));
+    });
+  })();
+
+  /* ---------------- STAGE 3a: JIGSAW ---------------- */
+  (function jigsaw(){
+    var cols = 3, rows = 4, total = cols * rows;
+    var grid = document.getElementById('jigsawGrid');
+    var caption = document.getElementById('jigsawCaption');
+    var toCrosswordBtn = document.getElementById('toCrosswordBtn');
+
+    var order = [];
+    for (var i = 0; i < total; i++) order.push(i);
+    function shuffle(arr){
+      for (var j = arr.length - 1; j > 0; j--){
+        var k = Math.floor(Math.random() * (j + 1));
+        var t = arr[j]; arr[j] = arr[k]; arr[k] = t;
+      }
+    }
+    do { shuffle(order); } while (order.every(function(v, idx){ return v === idx; }));
+
+    var pieceEls = [];
+    for (var slot = 0; slot < total; slot++){
+      var piece = document.createElement('div');
+      piece.className = 'jigsaw-piece';
+      grid.appendChild(piece);
+      pieceEls.push(piece);
+    }
+    function render(){
+      for (var slot = 0; slot < total; slot++){
+        var content = order[slot];
+        var col = content % cols, row = Math.floor(content / cols);
+        var xPct = (col / (cols - 1)) * 100;
+        var yPct = (row / (rows - 1)) * 100;
+        pieceEls[slot].style.backgroundPosition = xPct + '% ' + yPct + '%';
+      }
+    }
+    render();
+
+    var selected = null;
+    function isSolved(){ return order.every(function(v, idx){ return v === idx; }); }
+
+    function onPick(slot){
+      if (selected === null){
+        selected = slot;
+        pieceEls[slot].classList.add('selected');
+        return;
+      }
+      if (selected === slot){
+        pieceEls[slot].classList.remove('selected');
+        selected = null;
+        return;
+      }
+      var tmp = order[selected]; order[selected] = order[slot]; order[slot] = tmp;
+      pieceEls[selected].classList.remove('selected');
+      selected = null;
+      render();
+      if (isSolved()){
+        grid.classList.add('solved');
+        show(caption);
+        setTimeout(function(){ show(toCrosswordBtn); }, reduceMotion ? 50 : 600);
+      }
+    }
+    pieceEls.forEach(function(p, idx){
+      p.addEventListener('click', function(){ onPick(idx); });
+    });
+
+    toCrosswordBtn.addEventListener('click', function(){
+      toCrosswordBtn.hidden = true;
+      show(document.getElementById('subCrossword'));
+    });
+  })();
+
+  /* ---------------- STAGE 3b: CROSSWORD ---------------- */
+  (function crossword(){
+    var CW = [
+      ['C','L','O','U','D'],
+      [null,'I','W',null,'O'],
+      [null,'L','L',null,'V'],
+      [null,'Y',null,null,'E']
+    ];
+    var NUMBERS = { '0,0':1, '0,1':2, '0,2':3, '0,4':4 };
+    var grid = document.getElementById('crosswordGrid');
+    var inputs = {};
+
+    for (var r = 0; r < CW.length; r++){
+      for (var c = 0; c < CW[r].length; c++){
+        var cell = document.createElement('div');
+        cell.className = 'cw-cell';
+        if (CW[r][c] === null){
+          cell.classList.add('blocked');
+        } else {
+          var num = NUMBERS[r + ',' + c];
+          if (num){
+            var numEl = document.createElement('span');
+            numEl.className = 'cw-num';
+            numEl.textContent = num;
+            cell.appendChild(numEl);
+          }
+          var input = document.createElement('input');
+          input.maxLength = 1;
+          input.autocomplete = 'off';
+          input.inputMode = 'text';
+          input.id = 'cw-' + r + '-' + c;
+          input.dataset.row = r; input.dataset.col = c;
+          cell.appendChild(input);
+          inputs[r + ',' + c] = input;
+        }
+        grid.appendChild(cell);
+      }
+    }
+
+    var checkBtn = document.getElementById('checkCrosswordBtn');
+    var toWordleBtn = document.getElementById('toWordleBtn');
+
+    Object.keys(inputs).forEach(function(key){
+      var input = inputs[key];
+      input.addEventListener('input', function(){
+        input.value = input.value.replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0, 1);
+        input.classList.remove('correct', 'wrong');
+        if (input.value){
+          var r = parseInt(input.dataset.row, 10), c = parseInt(input.dataset.col, 10);
+          var next = inputs[r + ',' + (c + 1)];
+          if (next) next.focus();
+        }
+      });
+      input.addEventListener('keydown', function(e){
+        if (e.key === 'Enter') checkBtn.click();
+      });
+    });
+
+    checkBtn.addEventListener('click', function(){
+      var allCorrect = true;
+      Object.keys(inputs).forEach(function(key){
+        var parts = key.split(',');
+        var r = parseInt(parts[0], 10), c = parseInt(parts[1], 10);
+        var input = inputs[key];
+        if (input.value === CW[r][c]){
+          input.classList.add('correct');
+          input.classList.remove('wrong');
+          input.readOnly = true;
+        } else {
+          allCorrect = false;
+          input.classList.add('wrong');
+          setTimeout(function(inp){ return function(){ inp.classList.remove('wrong'); }; }(input), 350);
+        }
+      });
+      if (allCorrect){
+        checkBtn.hidden = true;
+        show(toWordleBtn);
+      }
+    });
+
+    toWordleBtn.addEventListener('click', function(){
+      toWordleBtn.hidden = true;
+      show(document.getElementById('subWordle'));
+    });
+  })();
+
+  /* ---------------- STAGE 3c: WORDLE ---------------- */
+  (function wordle(){
+    var ANSWER = 'WHITE', MAX = 6, LEN = 5;
+    var grid = document.getElementById('wordleGrid');
+    var msg = document.getElementById('wordleMsg');
+    var kbWrap = document.getElementById('wordleKeyboard');
+    var toGoldenBtn = document.getElementById('toGoldenBtn');
+    var wordleSection = document.getElementById('subWordle');
+
+    var tiles = [];
+    for (var r = 0; r < MAX; r++){
+      var rowEl = document.createElement('div');
+      rowEl.className = 'wordle-row';
+      var rowTiles = [];
+      for (var c = 0; c < LEN; c++){
+        var t = document.createElement('div');
+        t.className = 'wordle-tile';
+        rowEl.appendChild(t);
+        rowTiles.push(t);
+      }
+      grid.appendChild(rowEl);
+      tiles.push(rowTiles);
+    }
+
+    var keyRows = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
+    var keyEls = {};
+    keyRows.forEach(function(rowStr, idx){
+      var krow = document.createElement('div');
+      krow.className = 'wordle-krow';
+      if (idx === 2){
+        var enterKey = document.createElement('button');
+        enterKey.className = 'wordle-key wide';
+        enterKey.type = 'button';
+        enterKey.textContent = 'Enter';
+        enterKey.addEventListener('click', function(){ handleEnter(); });
+        krow.appendChild(enterKey);
+      }
+      rowStr.split('').forEach(function(ch){
+        var key = document.createElement('button');
+        key.className = 'wordle-key';
+        key.type = 'button';
+        key.textContent = ch;
+        key.addEventListener('click', function(){ handleLetter(ch); });
+        keyEls[ch] = key;
+        krow.appendChild(key);
+      });
+      if (idx === 2){
+        var backKey = document.createElement('button');
+        backKey.className = 'wordle-key wide';
+        backKey.type = 'button';
+        backKey.textContent = '⌫';
+        backKey.addEventListener('click', function(){ handleBack(); });
+        krow.appendChild(backKey);
+      }
+      kbWrap.appendChild(krow);
+    });
+
+    var current = '', rowIndex = 0, gameOver = false;
+
+    function renderCurrentRow(){
+      var rowTiles = tiles[rowIndex];
+      for (var c = 0; c < LEN; c++) rowTiles[c].textContent = current[c] || '';
+    }
+    function handleLetter(ch){
+      if (gameOver || current.length >= LEN) return;
+      current += ch;
+      renderCurrentRow();
+    }
+    function handleBack(){
+      if (gameOver || current.length === 0) return;
+      current = current.slice(0, -1);
+      renderCurrentRow();
+    }
+    function scoreGuess(guess, answer){
+      var result = new Array(LEN).fill('absent');
+      var answerArr = answer.split('');
+      var used = new Array(LEN).fill(false);
+      for (var i = 0; i < LEN; i++){
+        if (guess[i] === answerArr[i]){ result[i] = 'correct'; used[i] = true; }
+      }
+      for (i = 0; i < LEN; i++){
+        if (result[i] === 'correct') continue;
+        var idx = -1;
+        for (var j = 0; j < LEN; j++){
+          if (!used[j] && answerArr[j] === guess[i]){ idx = j; break; }
+        }
+        if (idx > -1){ result[i] = 'present'; used[idx] = true; }
+      }
+      return result;
+    }
+    function handleEnter(){
+      if (gameOver || current.length < LEN) return;
+      var guess = current;
+      var result = scoreGuess(guess, ANSWER);
+      var rowTiles = tiles[rowIndex];
+      result.forEach(function(state, c){
+        rowTiles[c].classList.add(state);
+        var key = keyEls[guess[c]];
+        if (key){
+          if (state === 'correct'){ key.classList.remove('present', 'absent'); key.classList.add('correct'); }
+          else if (state === 'present' && !key.classList.contains('correct')){ key.classList.remove('absent'); key.classList.add('present'); }
+          else if (state === 'absent' && !key.classList.contains('correct') && !key.classList.contains('present')){ key.classList.add('absent'); }
+        }
+      });
+
+      if (guess === ANSWER){
+        gameOver = true;
+        msg.textContent = "That's it — WHITE. 🤍";
+        setTimeout(function(){ show(toGoldenBtn); }, reduceMotion ? 50 : 700);
+        return;
+      }
+      rowIndex++;
+      current = '';
+      if (rowIndex >= MAX){
+        gameOver = true;
+        msg.textContent = 'The answer was WHITE 🤍';
+        setTimeout(function(){ show(toGoldenBtn); }, reduceMotion ? 50 : 500);
+      }
+    }
+
+    document.addEventListener('keydown', function(e){
+      if (wordleSection.hidden || gameOver) return;
+      if (e.key === 'Enter') handleEnter();
+      else if (e.key === 'Backspace') handleBack();
+      else if (/^[a-zA-Z]$/.test(e.key)) handleLetter(e.key.toUpperCase());
+    });
+
+    toGoldenBtn.addEventListener('click', function(){
+      toGoldenBtn.hidden = true;
+      show(document.getElementById('stageGolden'));
+    });
+  })();
+
+  /* ---------------- STAGE 4: GOLDEN TICKET ---------------- */
+  (function goldenTicket(){
+    var ANSWER = 'green';
+    var MAX_ATTEMPTS = 3;
+    var attemptsLeft = MAX_ATTEMPTS;
+    var input = document.getElementById('dressGuessInput');
+    var guessBtn = document.getElementById('dressGuessBtn');
+    var msg = document.getElementById('dressGuessMsg');
+    var ticket = document.getElementById('goldenTicket');
+    var caption = document.getElementById('goldenCaption');
+    var toStageFinalBtn = document.getElementById('toStageFinalBtn');
+    var done = false;
+
+    function checkGuess(){
+      if (done) return;
+      var val = input.value.trim().toLowerCase();
+      if (!val) return;
+
+      if (val.indexOf(ANSWER) !== -1){
+        done = true;
+        input.classList.remove('wrong');
+        input.classList.add('correct');
+        input.disabled = true;
+        guessBtn.disabled = true;
+        msg.textContent = "That's right! 💚";
+        msg.classList.add('correct');
+        show(ticket);
+        show(caption);
+        launchConfetti();
+        setTimeout(function(){ show(toStageFinalBtn); }, reduceMotion ? 50 : 700);
+        return;
+      }
+
+      attemptsLeft--;
+      input.classList.remove('correct');
+      input.classList.add('wrong');
+      msg.classList.remove('correct');
+      setTimeout(function(){ input.classList.remove('wrong'); }, 350);
+
+      if (attemptsLeft <= 0){
+        done = true;
+        input.disabled = true;
+        guessBtn.disabled = true;
+        msg.textContent = 'Better luck next time!';
+        setTimeout(function(){ show(document.getElementById('stageFinal')); }, reduceMotion ? 50 : 1200);
+      } else {
+        msg.textContent = 'Not quite — ' + attemptsLeft + ' attempt' + (attemptsLeft === 1 ? '' : 's') + ' remaining.';
+      }
+    }
+
+    guessBtn.addEventListener('click', checkGuess);
+    input.addEventListener('keydown', function(e){ if (e.key === 'Enter') checkGuess(); });
+
+    toStageFinalBtn.addEventListener('click', function(){
+      toStageFinalBtn.hidden = true;
+      show(document.getElementById('stageFinal'));
+    });
+  })();
+
+  function launchConfetti(){
+    if (reduceMotion) return;
+    var colors = ['#A5334B','#6E8F6B','#C79A2E','#7C2438'];
+    var wrap = document.createElement('div');
+    wrap.className = 'confetti';
+    for (var i=0;i<28;i++){
+      var el = document.createElement('i');
+      el.style.left = (Math.random()*100) + 'vw';
+      el.style.background = colors[i % colors.length];
+      el.style.animationDuration = (2.2 + Math.random()*1.4) + 's';
+      el.style.animationDelay = (Math.random()*0.6) + 's';
+      el.style.borderRadius = Math.random() > .5 ? '50%' : '2px';
+      wrap.appendChild(el);
+    }
+    document.body.appendChild(wrap);
+    setTimeout(function(){ wrap.remove(); }, 4200);
+  }
+})();
+</script>
