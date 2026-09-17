@@ -108,28 +108,6 @@
   .ticket:nth-of-type(odd){ transform:rotate(-.6deg); }
   .ticket:nth-of-type(even){ transform:rotate(.5deg); }
 
-  .ticket-kicker{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    gap:10px;
-    margin-bottom:14px;
-  }
-  .ticket-kicker .tag{
-    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif;
-    font-size:11px;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--sage-deep);
-    background:color-mix(in srgb, var(--sage) 16%, transparent);
-    padding:4px 8px;
-    border-radius:999px;
-  }
-  .ticket-kicker .num{
-    font-family:'Quicksand',ui-sans-serif,system-ui,sans-serif;
-    font-size:11px;
-    color:var(--ink-soft);
-  }
   .ticket h2{
     font-family:'Fraunces',Georgia,serif;
     font-weight:700;
@@ -286,8 +264,8 @@
   .jigsaw-grid.solved .jigsaw-piece{ cursor:default; }
 
   .crossword-grid{
-    display:grid; grid-template-columns:repeat(5,1fr); gap:3px;
-    max-width:230px; margin:0 auto; background:var(--ink); padding:3px; border-radius:8px;
+    display:grid; grid-template-columns:repeat(7,1fr); gap:3px;
+    max-width:280px; margin:0 auto; background:var(--ink); padding:3px; border-radius:8px;
   }
   .cw-cell{ position:relative; aspect-ratio:1; background:var(--paper); }
   .cw-cell.blocked{ background:var(--ink); }
@@ -387,7 +365,6 @@
 
   <!-- STAGE 1: SCRATCH -->
   <section class="ticket" id="stageScratch">
-    <div class="ticket-kicker"><span class="num">№ 001</span></div>
     <h2>Scratch the panel below with your finger (or mouse) to find out what.</h2>
     <div class="seam"></div>
     <div class="scratch-wrap" id="scratchWrap">
@@ -403,7 +380,6 @@
 
   <!-- STAGE 2: WHEEL -->
   <section class="ticket" id="stageWheel" hidden>
-    <div class="ticket-kicker"><span class="num">№ 002</span></div>
     <h2>Brunch · 12:00&nbsp;PM 🍹</h2>
     <p>We've been "considering" venues for your brunch — spoiler, margaritas are involved. Spin the wheel to see where we landed.</p>
     <div class="seam"></div>
@@ -425,7 +401,6 @@
 
   <!-- STAGE 3: DRESS CODE -->
   <section class="ticket" id="stageDress" hidden>
-    <div class="ticket-kicker"><span class="num">№ 003</span></div>
     <h2>One more thing...</h2>
     <p>Three little puzzles stand between you and the dress code. No skipping.</p>
     <div class="seam"></div>
@@ -444,11 +419,12 @@
       <div class="crossword-grid" id="crosswordGrid"></div>
       <div class="clue-list">
         <div><b>Across</b></div>
-        <div>1. Fluffy shape that fills the sky (5)</div>
+        <div>1. Creamy fruit used to make guacamole (7)</div>
         <div style="margin-top:8px;"><b>Down</b></div>
-        <div>2. Flower often carried down the aisle (4)</div>
-        <div>3. Snowy ___ — an all-white bird of prey (3)</div>
-        <div>4. Bird of peace that's always this colour (4)</div>
+        <div>1. Crunchy fruit that keeps the doctor away (5)</div>
+        <div>2. Fruit that gives us the oil for salad dressing (5)</div>
+        <div>3. Slimy stuff that grows in ponds (5)</div>
+        <div>4. Ridged vegetable often used in gumbo (4)</div>
       </div>
       <button class="btn" id="checkCrosswordBtn" style="margin-top:14px;">Check answers</button>
       <button class="btn btn-continue" id="toWordleBtn" hidden>Final clue →</button>
@@ -465,7 +441,6 @@
 
   <!-- STAGE 4: GOLDEN TICKET -->
   <section class="ticket" id="stageGolden" hidden>
-    <div class="ticket-kicker"><span class="num">№ 004</span></div>
     <h2>One last thing...</h2>
     <p>Before we let you go — what's the dress code for the rest of the party? Type it below.</p>
     <div class="seam"></div>
@@ -492,7 +467,7 @@
       <div class="headline">You're all set</div>
     </div>
     <div style="display:flex; flex-direction:column; gap:6px; text-align:center;">
-      <p>Dress code: White 🤍</p>
+      <p>Dress code: Green 💚</p>
       <p>We all can't wait to celebrate with you!</p>
     </div>
   </section>
@@ -717,12 +692,13 @@
   /* ---------------- STAGE 3b: CROSSWORD ---------------- */
   (function crossword(){
     var CW = [
-      ['C','L','O','U','D'],
-      [null,'I','W',null,'O'],
-      [null,'L','L',null,'V'],
-      [null,'Y',null,null,'E']
+      ['A','V','O','C','A','D','O'],
+      ['P',null,'L',null,'L',null,'K'],
+      ['P',null,'I',null,'G',null,'R'],
+      ['L',null,'V',null,'A',null,'A'],
+      ['E',null,'E',null,'E',null,null]
     ];
-    var NUMBERS = { '0,0':1, '0,1':2, '0,2':3, '0,4':4 };
+    var NUMBERS = { '0,0':1, '0,2':2, '0,4':3, '0,6':4 };
     var grid = document.getElementById('crosswordGrid');
     var inputs = {};
 
@@ -802,7 +778,7 @@
 
   /* ---------------- STAGE 3c: WORDLE ---------------- */
   (function wordle(){
-    var ANSWER = 'WHITE', MAX = 6, LEN = 5;
+    var ANSWER = 'GREEN', MAX = 6, LEN = 5;
     var grid = document.getElementById('wordleGrid');
     var msg = document.getElementById('wordleMsg');
     var kbWrap = document.getElementById('wordleKeyboard');
@@ -907,7 +883,7 @@
 
       if (guess === ANSWER){
         gameOver = true;
-        msg.textContent = "That's it — WHITE. 🤍";
+        msg.textContent = "That's it — GREEN. 💚";
         setTimeout(function(){ show(toGoldenBtn); }, reduceMotion ? 50 : 700);
         return;
       }
@@ -915,7 +891,7 @@
       current = '';
       if (rowIndex >= MAX){
         gameOver = true;
-        msg.textContent = 'The answer was WHITE 🤍';
+        msg.textContent = 'The answer was GREEN 💚';
         setTimeout(function(){ show(toGoldenBtn); }, reduceMotion ? 50 : 500);
       }
     }
@@ -935,7 +911,7 @@
 
   /* ---------------- STAGE 4: GOLDEN TICKET ---------------- */
   (function goldenTicket(){
-    var ANSWER = 'green';
+    var ANSWER = 'white';
     var MAX_ATTEMPTS = 3;
     var attemptsLeft = MAX_ATTEMPTS;
     var input = document.getElementById('dressGuessInput');
@@ -957,7 +933,7 @@
         input.classList.add('correct');
         input.disabled = true;
         guessBtn.disabled = true;
-        msg.textContent = "That's right! 💚";
+        msg.textContent = "That's right! 🤍";
         msg.classList.add('correct');
         show(ticket);
         show(caption);
